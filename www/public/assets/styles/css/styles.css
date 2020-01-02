@@ -1,0 +1,26 @@
+body {
+  background-color: black; }
+  body main section {
+    height: 100vh;
+    display: flex;
+    color: #FFF;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    body main section article {
+      width: 80%; }
+      body main section article .field {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; }
+        body main section article .field img {
+          width: 10%;
+          margin: 5px; }
+    body main section .containerProgresseBar {
+      border: 1px inset #FFF;
+      width: 70%;
+      height: 20px; }
+      body main section .containerProgresseBar #progresseBar {
+        width: 0%;
+        height: 100%;
+        background-color: red; }

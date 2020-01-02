@@ -1,0 +1,41 @@
+# Il est conseillé de ne pas modifier ce fichier. Les modifications s'effectuent dans le fichier .env
+version: '3'
+
+services:
+  mysql:
+    container_name: ${CONTAINER_MYSQL}
+    restart: unless-stopped
+    image: mariadb:latest
+    networks: 
+      - website
+    env_file:
+      - .env
+
+  app:
+    depends_on:
+      - mysql
+    container_name: ${CONTAINER_NAME}
+    restart: always
+    build: ./docker
+    image: memory-oclock
+    ports:
+      - ${APP_PORT}:80
+    networks: 
+      - website
+    volumes:
+      - ${PWD}/www:/var/www
+    env_file:
+      - .env
+
+  adminer:
+    container_name: ${CONTAINER_ADMINER}
+    restart: always
+    image: adminer
+    ports:
+      - ${ADMINER_PORT}:8080
+    networks:
+      - website
+
+networks: 
+  website:
+    driver: bridge

@@ -1,0 +1,5 @@
+.env
+.vscode
+.directory
+.DS_Store
+www/public/adminer.php
