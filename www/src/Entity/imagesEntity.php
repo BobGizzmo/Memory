@@ -1,6 +1,6 @@
 <?php
 
-class Images {
+class ImagesEntity {
 
     //Attribut de l'objet
     public $src;

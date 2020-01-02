@@ -3,7 +3,7 @@ $.when( $.ready ).then(function() {
     const timer = new Timer();//Instanciation de la class Timer
 
     //Requête AJAX Get
-    $.ajax('/includes/getImages.php')
+    $.ajax('/?p=game.getImages')
         .done(function(data) {
             let response = JSON.parse(data);//On transforme la réponse que nous a renvoyé php en tableau JSON
 

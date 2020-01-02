@@ -1,50 +1,27 @@
-<?php 
-    require_once 'includes/scores.php';
-    $scores = getScores('SELECT * FROM best_record ORDER BY timer LIMIT 5', []);
-?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/assets/styles/css/styles.css">
-    <title>Memory !</title>
-</head>
-<body>
-    <main>
-        <section>
-            <h1>JEU DE MÉMOIRE</h1>
-            <noscript>Ce jeu fonctionne avec JavaScript, merci de l'activer</noscript>
-            <article>
-                <div class="scores">
-                    <ul>
-                    <?php foreach($scores as $value) : ?>
-                        <li><?= $value["username"] ?>: <?= getTimer($value["timer"]) ?></li>
-                    <?php endforeach ?>
-                    </ul>
-                </div>
-                <div class="field">
-                    <?php for($i = 0; $i < 18; $i++) : ?>
-                        <img class="cards" data-id=<?= $i ?> src="/assets/images/pointInterro.png" alt="Image du jeux">
-                    <?php endfor ?>
-                    <?php for($i = 0; $i < 18; $i++) : ?>
-                        <img class="cards" data-id=<?= $i ?> src="/assets/images/pointInterro.png" alt="Image du jeux">
-                    <?php endfor ?>
-                </div>
-            </article>
-            
-            <div class="containerProgresseBar">
-                <div id="progresseBar"></div>
-            </div>
-        </section>
-    </main>
-    <script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous"></script>
-    <script src="/assets/scripts/class/Images.js"></script>
-    <script src="/assets/scripts/class/Timer.js"></script>
-    <script src="/assets/scripts/script.js"></script>
-</body>
-</html>
+<?php
+define('ROOT', dirname(__DIR__));
+
+if(empty($_GET)) {
+    $_GET['p'] = 'game.indexAction';
+}
+
+$controllers = ['game'];
+$methods = ['indexAction', 'getImages', 'getTimer', 'createScore'];
+
+[$controller, $method] = explode('.', $_GET['p']);
+
+if(!in_array($controller, $controllers) || !in_array($method, $methods)) {
+    header('HTTP/1.1 403 Forbidden');
+    die;
+}
+
+require_once ROOT.'/src/Controller/'.ucfirst($controller).'Controller.php';
+
+$controller = ucfirst($controller).'Controller';
+
+$controller = new $controller();
+
+$controller->$method();
+
+
+
