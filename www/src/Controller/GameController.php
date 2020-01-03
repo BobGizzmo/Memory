@@ -1,8 +1,9 @@
 <?php
+namespace Src\Controller;
 
-require_once ROOT.'/core/Controller/Controller.php';
-require_once ROOT.'/src/Services/ImageService.php';
-require_once ROOT.'/src/Table/ScoreTable.php';
+use Src\Table\ScoreTable;
+use Src\Services\ImageService;
+use Core\Controller\Controller;
 
 class GameController extends Controller{
 

@@ -1,5 +1,9 @@
 <?php
 define('ROOT', dirname(__DIR__));
+require ROOT.'/src/Autoloader.php';
+Src\Autoloader::register();
+require ROOT.'/core/Autoloader.php';
+Core\Autoloader::register();
 
 if(empty($_GET)) {
     $_GET['p'] = 'game.indexAction';
@@ -11,13 +15,11 @@ $methods = ['indexAction', 'getImages', 'getTimer', 'createScore'];
 [$controller, $method] = explode('.', $_GET['p']);
 
 if(!in_array($controller, $controllers) || !in_array($method, $methods)) {
-    header('HTTP/1.1 403 Forbidden');
+    header('HTTP/1.0 404 Not Found');
     die;
 }
 
-require_once ROOT.'/src/Controller/'.ucfirst($controller).'Controller.php';
-
-$controller = ucfirst($controller).'Controller';
+$controller = 'Src\Controller\\'.ucfirst($controller).'Controller';
 
 $controller = new $controller();
 

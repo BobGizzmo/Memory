@@ -1,4 +1,5 @@
 <?php
+namespace Src\Entity;
 
 class ScoreEntity {
 

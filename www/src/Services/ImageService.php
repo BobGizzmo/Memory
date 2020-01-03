@@ -1,5 +1,7 @@
 <?php
-require_once ROOT.'/src/Entity/ImagesEntity.php';
+namespace Src\Services;
+
+use Src\Entity\ImagesEntity;
 
 class ImageService {
 

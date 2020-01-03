@@ -1,4 +1,5 @@
 <?php
+namespace Core\Database;
 
 class MysqlDatabase {
 
@@ -21,7 +22,7 @@ class MysqlDatabase {
         if($this->pdo === null) {
             try {
                 $pdo = new \PDO("mysql:host=$this->dbContainer;dbname=$this->dbName", $this->dbUser, $this->dbPassword);
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
                 $this->pdo = $pdo;
         
             } catch(\PDOException $e) {

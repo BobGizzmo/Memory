@@ -1,6 +1,7 @@
 <?php
+namespace Src\Table;
 
-require_once ROOT.'/core/Table/Table.php';
+use Core\Table\Table;
 
 class ScoreTable extends Table{
 

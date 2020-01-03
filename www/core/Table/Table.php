@@ -1,5 +1,7 @@
 <?php
-require_once ROOT.'/core/Database/MysqlDatabase.php';
+namespace Core\Table;
+
+use Core\Database\MysqlDatabase;
 
 class Table {
 
@@ -23,7 +25,7 @@ class Table {
         $req->execute($params);
         
         if($fetchable) {
-            $req->setFetchMode(PDO::FETCH_OBJ);
+            $req->setFetchMode(\PDO::FETCH_OBJ);
             $response = $req->fetchAll();
             return $response;
         }
