@@ -1,6 +1,8 @@
 <?php
 namespace Core\Database;
 
+use PDO;
+
 class MysqlDatabase {
 
     
@@ -17,8 +19,9 @@ class MysqlDatabase {
         $this->dbUser = $dbUser;
         $this->dbPassword = $dbPassword;
     }
-
-    public function getPdo() {
+    
+    public function getPdo() :\PDO
+    {
         if($this->pdo === null) {
             try {
                 $pdo = new \PDO("mysql:host=$this->dbContainer;dbname=$this->dbName", $this->dbUser, $this->dbPassword);

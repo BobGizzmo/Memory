@@ -5,7 +5,8 @@ use Src\Entity\ImagesEntity;
 
 class ImageService {
 
-    public function getImages($repertoire = 'assets/images/') {
+    public function getImages(String $repertoire = 'assets/images/') :Array 
+    {
         $array = [];
         //On ouvre le répertoire contenant nos images et on affiche une erreur si il n'existe pas
         $folder = opendir($repertoire) or die("Erreur le repertoire $repertoire n'existe pas");

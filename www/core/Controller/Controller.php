@@ -15,4 +15,13 @@ class Controller {
         //On affiche la vue
         return require_once ROOT.'/templates'.$template;
     }
+    
+    /**
+     * @param String $table
+     * @return void
+     */
+    protected function getTable(String $table) {
+        $class = '\Src\Table\\' . ucfirst($table) . 'Table';
+        $this->$table = new $class();
+    }
 }

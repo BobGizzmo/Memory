@@ -17,7 +17,7 @@ class Autoloader{
      * Inclue le fichier correspondant à notre classe
      * @param $class string Le nom de la classe à charger
      */
-    static function autoload($class){
+    static function autoload(String $class){
         if (strpos($class, __NAMESPACE__ . '\\') === 0){
             $class = str_replace(__NAMESPACE__ . '\\', '', $class);
             $class = str_replace('\\', '/', $class);

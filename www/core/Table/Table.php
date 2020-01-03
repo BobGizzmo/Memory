@@ -17,21 +17,25 @@ class Table {
         $this->pdo = $database->getPdo();
     }
 
-    public function query($sql, $params=null, $fetchable = false) {
+    public function query(String $sql, Array $params=null, Bool $fetchable = false) :?Array 
+    {
 
         $this->getPDO();
+
+        $class_name = str_replace('Table', 'Entity', get_class($this));
 
         $req = $this->pdo->prepare($sql);
         $req->execute($params);
         
         if($fetchable) {
-            $req->setFetchMode(\PDO::FETCH_OBJ);
+            $req->setFetchMode(\PDO::FETCH_CLASS, $class_name);
             $response = $req->fetchAll();
             return $response;
         }
+        return null;
     }
 
-    public function create($params) {
+    public function create(Array $params) {
 
         $sql_parts = [];
         $attributes = [];
@@ -44,10 +48,11 @@ class Table {
 
         //INSERT INTO une table SET arg1 = ?, arg2 = ?
         //$attributes = [valeurArg1, valeurArg2]
-        $this->query("INSERT INTO $this->table SET $sql_part", $attributes);
+        return $this->query("INSERT INTO $this->table SET $sql_part", $attributes);
     }
 
-    public function secureEntries($entries) {
+    public function secureEntries(Array $entries) :Array
+    {
 
         $escapeEntries = [];
         //On boucle sur les entrées et on les sécurises

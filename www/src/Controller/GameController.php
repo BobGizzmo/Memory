@@ -7,6 +7,13 @@ use Core\Controller\Controller;
 
 class GameController extends Controller{
 
+    function __construct()
+    {
+        /* On instancie la class ScoreTable grâce à la méthode
+        "getTable" de notre class parente "Controller */
+        $this->getTable('Score');
+    }
+
     public function indexAction() {
         //On instancie notre classe ImageService
         $service = new ImageService();
@@ -14,32 +21,11 @@ class GameController extends Controller{
         puis on les compte grace à la méthode "count" de php */
         $nbImage = count($service->getImages());
 
-        $table = new ScoreTable();
-        $scores = $table->getFiveLastScores();//Récupère les 5 meilleurs scores
-
-        //On formate les timer de chaque score pour affichage
-        foreach ($scores as $score) {
-            $score->time = $this->getTimer($score->timer);
-        }
+        $scores = $this->Score->getFiveLastScores();//Récupère les 5 meilleurs scores
 
         /* On appelle la vue
         et on lui envoie les variables "nbImage" et "score" */
         return $this->render('/game/index.php', compact(['nbImage', 'scores']));
-    }
-    
-    /**
-     * @param Int $timer
-     * @return String
-     */
-    public function getTimer(Int $timer = null) {
-        $t = $timer;
-        $t = floor($t/1000);
-        $m = floor($t/60);
-        $sec = floor($t-$m*60);
-        
-        $string = !$m ? $sec." secondes" : $m." minutes et ".$sec." secondes";
-
-        return $string;
     }
 
     //AJAX AJAX AJAX

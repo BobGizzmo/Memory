@@ -16,7 +16,7 @@
                 <div class="scores">
                     <ul>
                     <?php foreach($scores as $value) : ?>
-                        <li><?= $value->username ?>: <?= $value->time ?></li>
+                        <li><?= $value->getUsername() ?>: <?= $value->formatTimer($value->getTimer()) ?></li>
                     <?php endforeach ?>
                     </ul>
                 </div>
