@@ -19,7 +19,6 @@ $.when( $.ready ).then(function() {
                 //Démarrage du timer
                 timer.begin(images.successCards.length, response.length);
             });
-            $('.test').off();
         })
         .fail(function(error) {
             if(error.status == 404) {
