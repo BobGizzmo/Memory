@@ -13,10 +13,13 @@ $.when( $.ready ).then(function() {
             $('.cards').click(function(){//On applique un event "click" à toute nos cartes
                 images.checkCards(this);
                 //On modifie la src de l'image ? sur laquelle on a cliqué par la vraie image correspondante
-                $(this).attr('src', response[$(this).data("id")].src);
+                let id = $(this).data("id");
+                id = id.split('-')[0];
+                $(this).attr('src', response[id].src);
                 //Démarrage du timer
                 timer.begin(images.successCards.length, response.length);
             });
+            $('.test').off();
         })
         .fail(function(error) {
             if(error.status == 404) {
