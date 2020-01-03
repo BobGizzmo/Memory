@@ -22,10 +22,10 @@
                 </div>
                 <div class="field">
                     <?php for($i = 0; $i < $nbImage; $i++) : ?>
-                        <img class="cards" data-id=<?= $i ?> src="/assets/images/pointInterro.png" alt="Image du jeux">
+                        <img class="cards" data-id=<?= $i.'-1' ?> src="/assets/images/pointInterro.png" alt="Image du jeux">
                     <?php endfor ?>
                     <?php for($i = 0; $i < $nbImage; $i++) : ?>
-                        <img class="cards" data-id=<?= $i ?> src="/assets/images/pointInterro.png" alt="Image du jeux">
+                        <img class="cards" data-id=<?= $i.'-2' ?> src="/assets/images/pointInterro.png" alt="Image du jeux">
                     <?php endfor ?>
                 </div>
             </article>
