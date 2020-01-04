@@ -1,14 +1,12 @@
-class Image {
-
-    constructor(images) {
-        this.images = images;
-        this.successCards = [];
-        this.try = [];
-    }
+const  Img = {
+       
+    images : null,
+    successCards : [],
+    try : [],
 
     generate(elements) {
         this.shuffleElements(elements);
-    }
+    },
 
     checkCards(card) {
         let id = $(card).data('id');//On récupère la valeur de l'attribut "data-id" de l'objet sur lequel on a cliqué
@@ -39,7 +37,7 @@ class Image {
             }
             this.try = [];//On vide le tableau "try"
         }
-    }
+    },
 
     
     shuffleElements($cards) {

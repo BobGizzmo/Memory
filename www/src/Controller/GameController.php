@@ -18,7 +18,7 @@ class GameController extends Controller{
         //On instancie notre classe ImageService
         $service = new ImageService();
         /*On appelle sa méthode getImage pour récupérer les images de notre dossier 
-        puis on les compte grace à la méthode "count" de php */
+        puis on les comptes grace à la méthode "count" de php */
         $nbImage = count($service->getImages());
 
         $scores = $this->Score->getFiveLastScores();//Récupère les 5 meilleurs scores

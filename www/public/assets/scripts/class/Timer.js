@@ -1,15 +1,13 @@
-class Timer {
+const Timer = {
 
-    constructor() {
-        this.limit = 3;//Limite de temps en minute
-        this.top = true;
-        this.min = 0;
-        this.sec = 0;
-        this.interval;
-        this.originalEntries = 0;
-        this.successEntries = 0;
-        this.time = 0;
-    }
+    limit : 3,//Limite de temps en minute
+    top : true,
+    min : 0,
+    sec : 0,
+    interval: null,
+    originalEntries : 0,
+    successEntries : 0,
+    time : 0,
     
     begin(successEntries, originalEntries) {
         this.successEntries = successEntries;
@@ -31,7 +29,7 @@ class Timer {
                 this.end();
             }, 1000);
         }
-    }
+    },
 
     end() {
         if(this.min == this.limit) {
