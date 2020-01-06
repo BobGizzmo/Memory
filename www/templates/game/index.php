@@ -20,13 +20,7 @@
                     <?php endforeach ?>
                     </ul>
                 </div>
-                <div class="field">
-                    <?php for($i = 0; $i < $nbImage; $i++) : ?>
-                        <img class="cards" data-id=<?= $i.'-1' ?> src="/assets/images/pointInterro.png" alt="Image du jeux">
-                    <?php endfor ?>
-                    <?php for($i = 0; $i < $nbImage; $i++) : ?>
-                        <img class="cards" data-id=<?= $i.'-2' ?> src="/assets/images/pointInterro.png" alt="Image du jeux">
-                    <?php endfor ?>
+                <div class="field" id="field">
                 </div>
             </article>
             
@@ -39,7 +33,8 @@
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
-    <script src="/assets/scripts/class/Images.js"></script>
+    <script src="/assets/scripts/class/Card.js"></script>
+    <script src="/assets/scripts/class/Game.js"></script>
     <script src="/assets/scripts/class/Timer.js"></script>
     <script src="/assets/scripts/script.js"></script>
 </body>

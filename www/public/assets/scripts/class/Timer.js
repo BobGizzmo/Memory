@@ -37,6 +37,7 @@ const Timer = {
             $('.cards').off(); //On retire l'event Click de toute les cartes de jeux
             alert("C'est une défaite..\n Le temps est écoulé..\n C'est vraiment pas de chance !");
         }
+        console.log(this.successEntries+' | '+this.originalEntries);
         if(this.successEntries == this.originalEntries) {
             clearInterval(this.interval);
             alert("C'est une victoire !!\nEt ça en seulement "+this.min+" minutes et "+this.sec+" secondes !");
