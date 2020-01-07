@@ -1,45 +1,26 @@
-<?php 
-    require_once 'includes/scores.php';
-    $scores = getScores('SELECT * FROM best_record ORDER BY timer LIMIT 5', []);
-?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/assets/styles/css/styles.css">
-    <title>Memory !</title>
-</head>
-<body>
-    <main>
-        <section>
-            <h1>JEU DE MÉMOIRE</h1>
-            <noscript>Ce jeu fonctionne avec JavaScript, merci de l'activer</noscript>
-            <article>
-                <div class="scores">
-                    <ul>
-                    <?php foreach($scores as $value) : ?>
-                        <li><?= $value["username"] ?>: <?= getTimer($value["timer"]) ?></li>
-                    <?php endforeach ?>
-                    </ul>
-                </div>
-                <div class="field" id="field">
-                </div>
-            </article>
-            
-            <div class="containerProgresseBar">
-                <div id="progresseBar"></div>
-            </div>
-        </section>
-    </main>
-    <script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous"></script>
-    <script src="/assets/scripts/class/Card.js"></script>
-    <script src="/assets/scripts/class/Game.js"></script>
-    <script src="/assets/scripts/class/Timer.js"></script>
-    <script src="/assets/scripts/script.js"></script>
-</body>
-</html>
+<?php
+define('ROOT', dirname(__DIR__));
+require ROOT.'/src/Autoloader.php';
+Src\Autoloader::register();
+require ROOT.'/core/Autoloader.php';
+Core\Autoloader::register();
+
+if(empty($_GET)) {
+    $_GET['p'] = 'game.indexAction';
+}
+
+$controllers = ['game'];
+$methods = ['indexAction', 'getImages', 'getTimer', 'createScore'];
+
+[$controller, $method] = explode('.', $_GET['p']);
+
+if(!in_array($controller, $controllers) || !in_array($method, $methods)) {
+    header('HTTP/1.0 404 Not Found');
+    die;
+}
+
+$controller = 'Src\Controller\\'.ucfirst($controller).'Controller';
+
+$controller = new $controller();
+
+$controller->$method();

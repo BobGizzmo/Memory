@@ -46,7 +46,7 @@ const Timer = {
             //Requête AJAX Post
             //paramètre 1: url que l'on appelle
             //paramètre 2: tableau de donnée que l'on envoie (format JSON)
-            $.post('/includes/scores.php', {username:username, timer: this.time})
+            $.post('/?p=game.createScore', {username:username, timer: this.time})
                 .done(function(data) {
                     alert(data);
                     document.location.reload(true);// Rechargement de la page

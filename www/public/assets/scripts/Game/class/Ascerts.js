@@ -1,16 +1,18 @@
-const Game = {
+const Ascerts = {
+
     successCards: [],
     cards:[],
 
     check(Card, $card, dataId) {
-        src = Card.update(1);
+        src = Card.update(1);//On appelle la méthode update de l'objet Card
         $card.attr("src", src);
 
         this.cards.push(dataId);//On l'ajoute dans notre tableau d'essaie
         $($card).addClass('show')
+        
         //Si 2 cartes ont été cliquées
         if(this.cards.length == 2) {
-            //Si les 2 cartes sont les mêmes
+            //Récupération des id et des index
             let index = [];
             this.cards.forEach(e => {
                 index.push(e.split('-'));
@@ -32,7 +34,7 @@ const Game = {
                     }, 1000);
                 }
             }
-            this.cards = [];//On vide le tableau "try"
+            this.cards = [];//On vide le tableau "cards"
         }
     }
 }

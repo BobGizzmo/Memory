@@ -1,6 +1,7 @@
 <?php
+namespace Src\Entity;
 
-class Images {
+class ImagesEntity {
 
     //Attribut de l'objet
     public $src;
